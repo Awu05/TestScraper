@@ -5,10 +5,13 @@ import webbrowser
 from adblockparser import AdblockRules
 from subprocess import call
 
+
+#Converts the python script into an executable, this is for windows
 dir = r"C:\Program Files (x86)\Python\My Scripts\Scrape Firstrow\dist"
 cmdline = "scrape_firstrow.exe"
 rc = call("start cmd /K " + cmdline, cwd=dir, shell=True)
 
+#Trying to apply an adblock filter
 raw_rules = []
 try:
     with open('easylist.txt') as inputfile:
@@ -39,6 +42,7 @@ print (rules.should_block("http://103092804.com"))
 print (rules2.should_block("http://ads.example.com"))
 '''
 
+#Links to scrape
 sports = ["http://ifirstrowus.eu/sport/football.html", "http://ifirstrowus.eu/sport/american-football.html", "http://ifirstrowus.eu/sport/basketball.html", "http://ifirstrowus.eu/sport/rugby.html", "http://ifirstrowus.eu/sport/ice-hockey.html", "http://ifirstrowus.eu/sport/boxing-wwe-ufc.html", "http://ifirstrowus.eu/sport/tennis.html", "http://ifirstrowus.eu/sport/motosport.html", "http://ifirstrowus.eu/sport/others.html"]
 
 sports_list = ["Soccor", "Football", "Basketball", "Rugby", "Hockey", "Boxing/WWE/UFC", "Tennis", "Motosport", "Other"]
@@ -56,6 +60,7 @@ choice = input("Type the number of the sport would you like to watch?: ")
 if(int(choice) > (len(sports_list)-1)):
     print("Invalid Input. Please Choose Again.")
 else:
+    #Used Beautifulsoup to scrape the link
     url = sports[int(choice)]
     #request = urllib.request.Request(url)
     response = urlopen(url)
